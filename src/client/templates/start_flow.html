@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Start OAuth Flow - OAuth 2.1 Learning Client{% endblock %}
+
+{% block content %}
+<div class="oauth-flow">
+    <h2>🚀 Start OAuth 2.1 Authorization Flow</h2>
+    <p>Click the button below to begin the OAuth 2.1 authorization code flow with PKCE.</p>
+
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Current Step:</strong> Authorization Request Generation
+        <p>We've generated a PKCE challenge and are ready to redirect you to the authorization server.</p>
+    </div>
+
+    <div style="text-align: center; margin: 30px 0;">
+        <a href="{{ authorization_url }}" class="btn" style="font-size: 18px; padding: 15px 30px;">
+            🔐 Start OAuth Flow
+        </a>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>📋 OAuth Request Parameters</h4>
+    <p>The following parameters will be sent to the authorization server:</p>
+
+    <div class="parameter">
+        <strong>client_id:</strong> {{ client_id }}
+        <br><small>Identifies this client application</small>
+    </div>
+
+    <div class="parameter">
+        <strong>redirect_uri:</strong> {{ redirect_uri }}
+        <br><small>Where the authorization server will send the response</small>
+    </div>
+
+    <div class="parameter">
+        <strong>scope:</strong> {{ scope }}
+        <br><small>Permissions being requested</small>
+    </div>
+
+    <div class="parameter">
+        <strong>state:</strong> {{ state }}
+        <br><small>CSRF protection parameter (randomly generated)</small>
+    </div>
+
+    <div class="parameter">
+        <strong>code_challenge:</strong> {{ pkce_challenge[:20] }}...
+        <br><small>PKCE challenge (SHA256 hash of verifier)</small>
+    </div>
+
+    <div class="parameter">
+        <strong>code_challenge_method:</strong> S256
+        <br><small>PKCE hashing method</small>
+    </div>
+
+    <div class="parameter">
+        <strong>response_type:</strong> code
+        <br><small>Requesting authorization code flow</small>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>🔒 PKCE Security Details</h4>
+    <p>Proof Key for Code Exchange (PKCE) adds security to the OAuth flow:</p>
+
+    <div class="code-block">
+# PKCE Verifier (stored securely in session):
+{{ pkce_verifier }}
+
+# PKCE Challenge (sent to authorization server):
+{{ pkce_challenge }}
+
+# Challenge Method: S256 (SHA256 hash)
+    </div>
+
+    <p><strong>Security Benefit:</strong> Even if an attacker intercepts the authorization code,
+    they cannot exchange it for tokens without the PKCE verifier.</p>
+</div>
+
+<div class="info-box">
+    <h4>🎯 What Happens Next?</h4>
+    <ol>
+        <li>You'll be redirected to the authorization server at <code>{{ auth_server }}</code></li>
+        <li>You'll see a login form with demo accounts (alice, bob, carol)</li>
+        <li>After login, you'll be redirected back here with an authorization code</li>
+        <li>We'll exchange the code + PKCE verifier for an access token</li>
+        <li>Finally, we'll use the token to access protected resources</li>
+    </ol>
+</div>
+
+<div style="text-align: center; margin: 30px 0;">
+    <p><em>Ready to learn OAuth 2.1? Click the button above to start!</em></p>
+</div>
+{% endblock %}

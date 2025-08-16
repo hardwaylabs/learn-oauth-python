@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Token Exchange Success - OAuth 2.1 Learning Client{% endblock %}
+
+{% block content %}
+<div class="success">
+    <h2>🎉 Access Token Received!</h2>
+    <p>Successfully exchanged authorization code + PKCE verifier for an access token!</p>
+</div>
+
+<div class="oauth-flow">
+    <div class="step">
+        <span class="step-number">4</span>
+        <strong>Current Step:</strong> Token Exchange Complete
+        <p>The authorization server has validated your authorization code and PKCE verifier, and issued an access token.</p>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>🎫 Token Details</h4>
+    <p>Your access token has been successfully obtained:</p>
+
+    <div class="parameter">
+        <strong>access_token:</strong> {{ token_preview }}
+        <br><small>Bearer token for accessing protected resources</small>
+    </div>
+
+    <div class="parameter">
+        <strong>token_type:</strong> {{ token_type }}
+        <br><small>Type of token (typically "Bearer")</small>
+    </div>
+
+    <div class="parameter">
+        <strong>expires_in:</strong> {{ expires_in }} seconds
+        <br><small>Token lifetime ({{ (expires_in / 60) | round(0) }} minutes)</small>
+    </div>
+
+    <div class="parameter">
+        <strong>scope:</strong> {{ scope }}
+        <br><small>Permissions granted by this token</small>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>🔒 PKCE Verification Success</h4>
+    <div class="success">
+        <strong>✅ PKCE Challenge Verified</strong>
+        <p>The authorization server successfully verified that your PKCE verifier matches the challenge sent in the initial request. This proves you are the legitimate client that started the flow.</p>
+    </div>
+
+    <div class="code-block">
+# PKCE Security Flow:
+1. Client generates random verifier
+2. Client creates SHA256 hash (challenge)
+3. Challenge sent to auth server
+4. Verifier kept secret by client
+5. Code + verifier exchanged for token
+6. Server verifies: SHA256(verifier) == challenge ✓
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>🎯 Next Steps</h4>
+    <p>Now that you have an access token, you can:</p>
+    <ol>
+        <li><strong>Access Protected Resources:</strong> Use the Bearer token to make authenticated requests</li>
+        <li><strong>Get User Information:</strong> Access user profile data from the resource server</li>
+        <li><strong>Make API Calls:</strong> Use the token for any API endpoints within the granted scope</li>
+    </ol>
+</div>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="/access-resource" class="btn btn-success" style="font-size: 18px; padding: 15px 30px;">
+        🔓 Access Protected Resource
+    </a>
+    <a href="/user-info" class="btn" style="font-size: 18px; padding: 15px 30px;">
+        👤 Get User Info
+    </a>
+</div>
+
+<div class="token-display">
+# Full Access Token (handle with care in production!):
+{{ access_token }}
+
+# Authorization Header Format:
+Authorization: Bearer {{ access_token }}
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <p><em>Congratulations! You've successfully completed the OAuth 2.1 flow. Now let's use your token!</em></p>
+</div>
+{% endblock %}

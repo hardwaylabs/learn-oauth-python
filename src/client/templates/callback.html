@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Authorization Callback - OAuth 2.1 Learning Client{% endblock %}
+
+{% block content %}
+<div class="success">
+    <h2>✅ Authorization Code Received!</h2>
+    <p>The authorization server has successfully redirected you back with an authorization code.</p>
+</div>
+
+<div class="oauth-flow">
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Current Step:</strong> Authorization Code Received
+        <p>You have successfully authenticated with the authorization server and received an authorization code.</p>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>📋 Callback Parameters</h4>
+    <p>The authorization server sent back the following parameters:</p>
+
+    <div class="parameter">
+        <strong>code:</strong> {{ code_preview }}
+        <br><small>Authorization code (one-time use, expires in 10 minutes)</small>
+    </div>
+
+    <div class="parameter">
+        <strong>state:</strong> {{ state }}
+        <br><small>CSRF protection parameter (validated ✓)</small>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>🔒 Security Validation</h4>
+    <div class="success">
+        <strong>✅ State Parameter Validated</strong>
+        <p>The state parameter matches what we sent, confirming this is a legitimate response and not a CSRF attack.</p>
+    </div>
+
+    <div class="success">
+        <strong>✅ Authorization Code Stored</strong>
+        <p>The authorization code has been securely stored in your session for the next step.</p>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>🎯 Next Steps</h4>
+    <p>Now that we have the authorization code, we need to:</p>
+    <ol>
+        <li><strong>Exchange the code for tokens:</strong> Send the authorization code + PKCE verifier to get an access token</li>
+        <li><strong>Access protected resources:</strong> Use the access token to make authenticated requests</li>
+    </ol>
+</div>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="/exchange-token" class="btn btn-success" style="font-size: 18px; padding: 15px 30px;">
+        🔄 Exchange Code for Token
+    </a>
+</div>
+
+<div class="code-block">
+# Authorization Code (truncated for security):
+{{ code_preview }}
+
+# This code will be exchanged along with the PKCE verifier
+# for an access token in the next step.
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <p><em>Ready for the next step? Click the button above to exchange your code for an access token!</em></p>
+</div>
+{% endblock %}

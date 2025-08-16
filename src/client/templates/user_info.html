@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}User Information - OAuth 2.1 Learning Client{% endblock %}
+
+{% block content %}
+<div class="success">
+    <h2>👤 User Information Retrieved!</h2>
+    <p>Successfully accessed user information using your Bearer token!</p>
+</div>
+
+<div class="info-box">
+    <h4>🎫 Token Usage</h4>
+    <p>Your request was authenticated using:</p>
+
+    <div class="parameter">
+        <strong>Authorization Header:</strong> Bearer {{ token_used }}
+        <br><small>Bearer token included in HTTP Authorization header</small>
+    </div>
+
+    <div class="parameter">
+        <strong>UserInfo URL:</strong> {{ userinfo_url }}
+        <br><small>Standard OAuth 2.1 userinfo endpoint</small>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>👤 User Information</h4>
+    <p>The resource server returned the following user information:</p>
+
+    <div class="code-block">
+{
+{% for key, value in user_info.items() %}
+    "{{ key }}": "{{ value }}"{% if not loop.last %},{% endif %}
+{% endfor %}
+}
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>🔒 Privacy & Security</h4>
+    <div class="success">
+        <strong>✅ Secure Access</strong>
+        <p>User information is only accessible with a valid access token. The resource server validates the token before returning any user data.</p>
+    </div>
+
+    <p><strong>Key Security Features:</strong></p>
+    <ul>
+        <li><strong>Token Validation:</strong> Resource server validates the Bearer token</li>
+        <li><strong>Scope Enforcement:</strong> Only data within granted scopes is returned</li>
+        <li><strong>No Credentials Exposed:</strong> Client never sees user passwords</li>
+        <li><strong>Limited Access:</strong> Token has limited lifetime and scope</li>
+    </ul>
+</div>
+
+<div class="info-box">
+    <h4>🎯 OAuth Benefits Demonstrated</h4>
+    <ul>
+        <li><strong>Delegated Authorization:</strong> User authorized access without sharing credentials</li>
+        <li><strong>Limited Scope:</strong> Client only gets access to requested permissions</li>
+        <li><strong>Secure Token Exchange:</strong> PKCE prevented code interception attacks</li>
+        <li><strong>Stateless Authentication:</strong> Bearer token enables stateless API access</li>
+        <li><strong>User Control:</strong> User can revoke access at any time</li>
+    </ul>
+</div>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="/access-resource" class="btn" style="font-size: 18px; padding: 15px 30px;">
+        🔓 Access Protected Resource
+    </a>
+    <a href="/" class="btn" style="font-size: 18px; padding: 15px 30px;">
+        🔄 Start New Flow
+    </a>
+</div>
+
+<div class="code-block">
+# HTTP Request Made:
+GET {{ userinfo_url }}
+Authorization: Bearer {{ token_used }}
+
+# HTTP Response:
+200 OK
+Content-Type: application/json
+
+{
+{% for key, value in user_info.items() %}
+    "{{ key }}": "{{ value }}"{% if not loop.last %},{% endif %}
+{% endfor %}
+}
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <p><em>🎉 You've successfully accessed user information via OAuth 2.1!</em></p>
+</div>
+{% endblock %}

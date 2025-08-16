@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Protected Resource Access - OAuth 2.1 Learning Client{% endblock %}
+
+{% block content %}
+<div class="success">
+    <h2>🔓 Protected Resource Accessed!</h2>
+    <p>Successfully used your access token to retrieve protected content!</p>
+</div>
+
+<div class="oauth-flow">
+    <div class="step">
+        <span class="step-number">5</span>
+        <strong>Current Step:</strong> Protected Resource Access Complete
+        <p>You have successfully used your Bearer token to access protected resources on the resource server.</p>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>🎫 Token Usage</h4>
+    <p>Your request was authenticated using:</p>
+
+    <div class="parameter">
+        <strong>Authorization Header:</strong> Bearer {{ token_used }}
+        <br><small>Bearer token included in HTTP Authorization header</small>
+    </div>
+
+    <div class="parameter">
+        <strong>Resource URL:</strong> {{ resource_url }}
+        <br><small>Protected endpoint on the resource server</small>
+    </div>
+
+    <div class="parameter">
+        <strong>HTTP Method:</strong> GET
+        <br><small>Standard HTTP GET request with Bearer authentication</small>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>📄 Protected Resource Content</h4>
+    <p>The resource server returned the following protected content:</p>
+
+    <div class="code-block">{{ resource_content }}</div>
+</div>
+
+<div class="info-box">
+    <h4>🔒 Security Summary</h4>
+    <div class="success">
+        <strong>✅ OAuth 2.1 Flow Complete!</strong>
+        <p>You have successfully completed the entire OAuth 2.1 authorization code flow with PKCE:</p>
+
+        <ol>
+            <li><strong>Authorization Request:</strong> Generated PKCE challenge and redirected to auth server</li>
+            <li><strong>User Authentication:</strong> User authenticated with demo credentials</li>
+            <li><strong>Authorization Code:</strong> Received authorization code via callback</li>
+            <li><strong>Token Exchange:</strong> Exchanged code + PKCE verifier for access token</li>
+            <li><strong>Resource Access:</strong> Used Bearer token to access protected resources</li>
+        </ol>
+    </div>
+</div>
+
+<div class="info-box">
+    <h4>🎯 What You've Learned</h4>
+    <ul>
+        <li><strong>PKCE Security:</strong> How Proof Key for Code Exchange prevents authorization code interception attacks</li>
+        <li><strong>State Parameter:</strong> How the state parameter prevents CSRF attacks</li>
+        <li><strong>Bearer Tokens:</strong> How access tokens are used to authenticate API requests</li>
+        <li><strong>OAuth Scopes:</strong> How permissions are requested and granted</li>
+        <li><strong>Token Lifecycle:</strong> How tokens are issued, used, and expire</li>
+    </ul>
+</div>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="/user-info" class="btn" style="font-size: 18px; padding: 15px 30px;">
+        👤 Get User Info
+    </a>
+    <a href="/" class="btn" style="font-size: 18px; padding: 15px 30px;">
+        🔄 Start New Flow
+    </a>
+</div>
+
+<div class="code-block">
+# HTTP Request Made:
+GET {{ resource_url }}
+Authorization: Bearer {{ token_used }}
+
+# HTTP Response:
+200 OK
+Content-Type: text/plain
+
+{{ resource_content }}
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+    <p><em>🎉 Congratulations! You've mastered OAuth 2.1 with PKCE!</em></p>
+</div>
+{% endblock %}

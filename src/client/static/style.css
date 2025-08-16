@@ -1,0 +1,209 @@
+/* OAuth 2.1 Learning Client Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 20px 0;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #4a5568;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: #718096;
+    font-size: 1.1em;
+}
+
+.oauth-flow {
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.oauth-flow h3 {
+    color: #2d3748;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.oauth-flow h3::before {
+    content: "🔐";
+    margin-right: 10px;
+}
+
+.step {
+    background: white;
+    border-left: 4px solid #4299e1;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 0 5px 5px 0;
+}
+
+.step-number {
+    background: #4299e1;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.btn {
+    background: #4299e1;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: #3182ce;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(66, 153, 225, 0.3);
+}
+
+.btn-success {
+    background: #48bb78;
+}
+
+.btn-success:hover {
+    background: #38a169;
+}
+
+.btn-danger {
+    background: #f56565;
+}
+
+.btn-danger:hover {
+    background: #e53e3e;
+}
+
+.info-box {
+    background: #ebf8ff;
+    border: 1px solid #bee3f8;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.info-box h4 {
+    color: #2b6cb0;
+    margin-bottom: 10px;
+}
+
+.code-block {
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    overflow-x: auto;
+    margin: 10px 0;
+}
+
+.parameter {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin: 5px 0;
+    font-family: monospace;
+}
+
+.parameter strong {
+    color: #2d3748;
+}
+
+.error {
+    background: #fed7d7;
+    border: 1px solid #feb2b2;
+    color: #c53030;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+}
+
+.success {
+    background: #c6f6d5;
+    border: 1px solid #9ae6b4;
+    color: #276749;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+}
+
+.token-display {
+    background: #1a202c;
+    color: #e2e8f0;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: monospace;
+    word-break: break-all;
+    margin: 15px 0;
+}
+
+.navigation {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.navigation a {
+    margin: 0 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 2em;
+    }
+}

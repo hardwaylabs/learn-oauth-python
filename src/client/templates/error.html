@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}OAuth Error - OAuth 2.1 Learning Client{% endblock %}
+
+{% block content %}
+<div class="error">
+    <h2>❌ OAuth Error Occurred</h2>
+    <p>An error occurred during the OAuth flow. This is part of the learning experience!</p>
+</div>
+
+<div class="info-box">
+    <h4>📋 Error Details</h4>
+
+    <div class="parameter">
+        <strong>Error:</strong> {{ error }}
+        <br><small>OAuth error code</small>
+    </div>
+
+    <div class="parameter">
+        <strong>Description:</strong> {{ error_description }}
+        <br><small>Human-readable error description</small>
+    </div>
+
+    {% if state %}
+    <div class="parameter">
+        <strong>State:</strong> {{ state }}
+        <br><small>State parameter from the request</small>
+    </div>
+    {% endif %}
+</div>
+
+<div class="info-box">
+    <h4>🎓 Learning Opportunity</h4>
+    <p>OAuth errors are an important part of understanding the protocol. Common errors include:</p>
+
+    <ul>
+        <li><strong>access_denied:</strong> User denied the authorization request</li>
+        <li><strong>invalid_request:</strong> The request is missing required parameters</li>
+        <li><strong>invalid_client:</strong> Client authentication failed</li>
+        <li><strong>invalid_grant:</strong> The authorization code is invalid or expired</li>
+        <li><strong>unsupported_response_type:</strong> The response type is not supported</li>
+        <li><strong>invalid_scope:</strong> The requested scope is invalid or unknown</li>
+    </ul>
+</div>
+
+<div class="info-box">
+    <h4>🔧 Troubleshooting</h4>
+    {% if error == "access_denied" %}
+    <p>The user denied the authorization request. This is normal behavior when a user chooses not to grant permissions.</p>
+    {% elif error == "invalid_state" %}
+    <p>The state parameter validation failed. This could indicate a CSRF attack or a session issue.</p>
+    {% elif error == "invalid_request" %}
+    <p>The authorization request was malformed. Check that all required parameters are present and valid.</p>
+    {% else %}
+    <p>Check the OAuth server logs and ensure all parameters are correctly formatted.</p>
+    {% endif %}
+</div>
+
+<div style="text-align: center; margin: 30px 0;">
+    <a href="/" class="btn">🔄 Try Again</a>
+    <a href="/health" class="btn">❤️ Check Health</a>
+</div>
+
+<div class="code-block">
+# Error Response:
+{
+    "error": "{{ error }}",
+    "error_description": "{{ error_description }}"
+    {% if state %}, "state": "{{ state }}"{% endif %}
+}
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+🔒 PROTECTED RESOURCE 🔒
+
+Congratulations! You have successfully completed the OAuth 2.1 flow!
+
+This is a protected resource that can only be accessed with a valid OAuth access token.
+
+OAuth 2.1 Flow Summary:
+========================
+
+1. ✅ Authorization Request - Client redirected user to authorization server
+2. ✅ User Authentication - User provided credentials to authorization server
+3. ✅ Authorization Grant - Authorization server issued authorization code with PKCE
+4. ✅ Token Exchange - Client exchanged authorization code for access token using PKCE verifier
+5. ✅ Resource Access - Client used access token to access this protected resource
+
+Security Features Demonstrated:
+==============================
+
+🔐 PKCE (Proof Key for Code Exchange) - Prevents authorization code interception attacks
+🔐 Bearer Token Authentication - Secure token-based resource access
+🔐 Proper OAuth 2.1 Flow - Following latest OAuth security best practices
+🔐 Detailed Logging - Educational visibility into each step of the process
+
+This implementation demonstrates modern OAuth 2.1 security practices in Python using FastAPI.
+
+Resource accessed at: {timestamp}
+Token used: {token_info}

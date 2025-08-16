@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Authorization - Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .oauth-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .btn {
+            background: #4caf50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+        .demo-accounts {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border-left: 4px solid #ff9800;
+        }
+        .demo-account {
+            margin: 5px 0;
+            font-family: monospace;
+            background: #f5f5f5;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .pkce-info {
+            background: #f3e5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #9c27b0;
+        }
+        .code-snippet {
+            font-family: monospace;
+            background: #f5f5f5;
+            padding: 5px;
+            border-radius: 3px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 OAuth 2.1 Authorization</h1>
+            <p>Application requesting access to your account</p>
+        </div>
+
+        <div class="oauth-info">
+            <h3>📋 Authorization Request Details</h3>
+            <p><strong>Client ID:</strong> {{ auth_request.client_id }}</p>
+            <p><strong>Redirect URI:</strong> {{ auth_request.redirect_uri }}</p>
+            <p><strong>Scope:</strong> {{ auth_request.scope }}</p>
+            <p><strong>State:</strong> {{ auth_request.state }}</p>
+            <p><strong>Response Type:</strong> {{ auth_request.response_type }}</p>
+        </div>
+
+        <div class="pkce-info">
+            <h3>🔒 PKCE Security Information</h3>
+            <p><strong>Challenge Method:</strong> {{ auth_request.code_challenge_method }}</p>
+            <p><strong>Code Challenge:</strong></p>
+            <div class="code-snippet">{{ auth_request.code_challenge[:20] }}...</div>
+            <p><small>PKCE (Proof Key for Code Exchange) ensures secure authorization code exchange</small></p>
+        </div>
+
+        {% if error %}
+        <div style="background: #ffebee; color: #c62828; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+            <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="post" action="/login">
+            <!-- Hidden fields to preserve OAuth parameters -->
+            <input type="hidden" name="client_id" value="{{ auth_request.client_id }}">
+            <input type="hidden" name="redirect_uri" value="{{ auth_request.redirect_uri }}">
+            <input type="hidden" name="scope" value="{{ auth_request.scope }}">
+            <input type="hidden" name="state" value="{{ auth_request.state }}">
+            <input type="hidden" name="code_challenge" value="{{ auth_request.code_challenge }}">
+            <input type="hidden" name="code_challenge_method" value="{{ auth_request.code_challenge_method }}">
+            <input type="hidden" name="response_type" value="{{ auth_request.response_type }}">
+
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit" class="btn">🚀 Authorize Application</button>
+        </form>
+
+        <div class="demo-accounts">
+            <h3>🧪 Demo Accounts (for learning purposes)</h3>
+            <p>Use any of these pre-configured accounts:</p>
+            {% for account in demo_accounts %}
+            <div class="demo-account">
+                <strong>{{ account.name }}:</strong> {{ account.username }} / {{ account.password }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

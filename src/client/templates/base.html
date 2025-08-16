@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OAuth 2.1 Learning Client{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 OAuth 2.1 Learning Client</h1>
+            <p>Educational implementation demonstrating OAuth 2.1 with PKCE</p>
+        </div>
+
+        <div class="card">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div class="navigation">
+            <a href="/" class="btn">🏠 Start Flow</a>
+            <a href="/health" class="btn">❤️ Health Check</a>
+        </div>
+
+        <div class="card">
+            <div class="info-box">
+                <h4>📚 Learning Resources</h4>
+                <p>This client demonstrates the OAuth 2.1 authorization code flow with PKCE (Proof Key for Code Exchange).
+                Each step is logged to help you understand the security mechanisms and message exchanges.</p>
+
+                <div class="oauth-flow">
+                    <h3>OAuth 2.1 Flow Steps</h3>
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <strong>Authorization Request:</strong> Generate PKCE challenge and redirect to authorization server
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <strong>User Authentication:</strong> User logs in at authorization server
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <strong>Authorization Code:</strong> Receive authorization code via callback
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <strong>Token Exchange:</strong> Exchange code + PKCE verifier for access token
+                    </div>
+                    <div class="step">
+                        <span class="step-number">5</span>
+                        <strong>Resource Access:</strong> Use access token to access protected resources
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple JavaScript for enhanced UX
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click animations to buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
