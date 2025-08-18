@@ -179,7 +179,6 @@ $RECYCLE.BIN/
 *.log
 *.json
 scripts/output/
-.kiro/
 integration_test_results.json
 performance_security_results.json
 documentation_validation_results.json
