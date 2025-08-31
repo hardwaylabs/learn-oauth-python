@@ -2,7 +2,9 @@
 
 🐍 **A comprehensive Python implementation of OAuth 2.1 for educational purposes**
 
-This project provides a complete, working OAuth 2.1 implementation in Python using FastAPI, designed to help developers understand OAuth concepts through hands-on exploration. It mirrors the educational approach of the Go OAuth learning project while leveraging Python's ecosystem and modern web frameworks.
+This project provides a complete, working OAuth 2.1 implementation in Python using FastAPI, designed to help developers
+understand OAuth concepts through hands-on exploration. It mirrors the educational approach of the Go OAuth
+learning project while leveraging Python's ecosystem and modern web frameworks.
 
 ## 🎯 What You'll Learn
 
@@ -22,8 +24,8 @@ The system consists of three independent FastAPI applications that communicate v
 │   Client App    │    │ Authorization Server │    │  Resource Server    │
 │   Port 8080     │◄──►│     Port 8081        │    │     Port 8082       │
 │                 │    │                      │    │                     │
-│ • OAuth Flow    │    │ • User Authentication│    │ • Protected Resources│
-│ • PKCE Generation│    │ • Authorization Codes│    │ • Token Validation  │
+│ • OAuth Flow    │    │ • User Authentication│    │ • Protected Resource│
+│ • PKCE Gen      │    │ • Authorization Codes│    │ • Token Validation  │
 │ • Token Storage │    │ • Access Tokens      │    │ • User Info API     │
 └─────────────────┘    └──────────────────────┘    └─────────────────────┘
 ```
