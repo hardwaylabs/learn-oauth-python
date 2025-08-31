@@ -136,13 +136,13 @@ uvicorn src.client.main:app --host 0.0.0.0 --port 8080 --reload
 Once all servers are running:
 
 1. **🌐 Open your browser** to <http://localhost:8080>
-2. **🔑 Click "Start OAuth Flow"** to begin the authorization process
-3. **👤 Login with demo account:**
+1. **🔑 Click "Start OAuth Flow"** to begin the authorization process
+1. **👤 Login with demo account:**
    - Username: `alice`, Password: `password123`
    - Username: `bob`, Password: `secret456`
    - Username: `carol`, Password: `mypass789`
-4. **📋 Follow the step-by-step flow** and observe the detailed console logging
-5. **🔒 Access protected resources** to complete the demonstration
+1. **📋 Follow the step-by-step flow** and observe the detailed console logging
+1. **🔒 Access protected resources** to complete the demonstration
 
 ## 📚 Step-by-Step OAuth Flow Walkthrough
 
@@ -335,7 +335,7 @@ python-oauth-learning/
    python scripts/hash_passwords.py --password "newpassword"
    ```
 
-2. **Add to user store** in `src/auth_server/storage.py`:
+1. **Add to user store** in `src/auth_server/storage.py`:
    ```python
    self._users = {
        'alice': {'password_hash': '$2b$12$...', 'email': 'alice@example.com'},
@@ -343,7 +343,7 @@ python-oauth-learning/
    }
    ```
 
-3. **Update demo account list** in templates and documentation
+1. **Update demo account list** in templates and documentation
 
 ### Extending OAuth Scopes
 
@@ -461,13 +461,13 @@ pytest -v
    - Verify all steps complete successfully
    - Check token-based resource access
 
-2. **Error Scenarios**
+1. **Error Scenarios**
    - Invalid PKCE verifier
    - Expired authorization code
    - Missing or malformed tokens
    - Invalid user credentials
 
-3. **Security Tests**
+1. **Security Tests**
    - CSRF attack prevention (state parameter)
    - Authorization code interception (PKCE protection)
    - Token replay attacks
@@ -553,7 +553,7 @@ python scripts/start_all.py
 ### Development Setup
 
 1. **Fork and clone** the repository
-2. **Install development dependencies:**
+1. **Install development dependencies:**
 
    ```bash
    uv sync --dev
@@ -561,13 +561,13 @@ python scripts/start_all.py
    pip install -r requirements-dev.txt
    ```
 
-3. **Install pre-commit hooks:**
+1. **Install pre-commit hooks:**
 
    ```bash
    pre-commit install
    ```
 
-4. **Run tests** to ensure everything works:
+1. **Run tests** to ensure everything works:
 
    ```bash
    pytest
@@ -596,10 +596,10 @@ mypy src/
 ### Adding Features
 
 1. **Create feature branch:** `git checkout -b feature/new-feature`
-2. **Write tests first** (TDD approach)
-3. **Implement feature** with proper documentation
-4. **Update README** if needed
-5. **Submit pull request** with clear description
+1. **Write tests first** (TDD approach)
+1. **Implement feature** with proper documentation
+1. **Update README** if needed
+1. **Submit pull request** with clear description
 
 ## 📖 Additional Resources
 
@@ -632,4 +632,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**🎓 Happy Learning!** This implementation provides a solid foundation for understanding OAuth 2.1 concepts and building secure, modern web applications with Python.
+**🎓 Happy Learning!** This implementation provides a solid foundation for understanding OAuth 2.1 concepts and building secure,
+modern web applications with Python.
